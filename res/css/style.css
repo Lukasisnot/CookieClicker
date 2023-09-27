@@ -1,5 +1,24 @@
+body {
+    font-family: monospace;
+}
+
 #cookie {
     max-width: 120px;
     width: 100%;
-    
 }
+
+/* #upgradeButton {
+    color: gray;
+    background-image: url("../img/upgrade.png");
+} */
+
+#upgradeButton {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
