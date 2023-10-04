@@ -12,33 +12,33 @@ let autoClickerInterval = 1500;
 let autoClicker;
 
 cookie.onclick = () => {
-  console.log("click");
-  numberOfCookies += cookieAdder;
-  console.log(numberOfCookies);
+  // console.log("click");
+  // console.log(numberOfCookies);
+  addCookies(cookieAdder);
   updateCookies();
-  upgradeButton.style.backgroundColor =
-    numberOfCookies < clickUpgradePrice ? "rgb(255, 0, 0)" : "rgb(0, 255, 0)";
+  updateButtons();
 };
 
 upgradeButton.onclick = () => {
   if (numberOfCookies < clickUpgradePrice) return;
 
-  numberOfCookies -= 50;
+  addCookies(-clickUpgradePrice);
   cookieAdder *= 2;
-  upgradeButton.ariaDisabled = true;
   updateCookies();
+  updateButtons();
 
   clickUpgradePrice *= 2;
-  upgradeButton.innerText = "Upgrade: " + clickUpgradePrice;
+  setUpgradeText(upgradeButton, clickUpgradePrice);
 };
 
 autoClickButton.onclick = () => {
   if (numberOfCookies < autoClickPrice) return;
 
-  numberOfCookies -= autoClickPrice;
+  addCookies(-autoClickPrice);
   autoClickPrice *= 2;
+  setUpgradeText(autoClickButton, autoClickPrice);
   updateCookies();
-  setUpgradeText(upgradeButton, autoClickPrice);
+  updateButtons();
 
   autoClickAdder++;
   autoClickerInterval -= autoClickerInterval * 0.2;
@@ -47,6 +47,7 @@ autoClickButton.onclick = () => {
   autoClicker = setInterval(() => {
     numberOfCookies += autoClickAdder;
     updateCookies();
+    updateButtons();
   }, autoClickerInterval);
 };
 
@@ -56,6 +57,15 @@ autoClickButton.onclick = () => {
 // }
 
 // cheat1m();
+
+function addCookies(value) {
+  numberOfCookies += value;
+}
+
+function updateButtons() {
+  setColor(upgradeButton, numberOfCookies < clickUpgradePrice ? "rgb(255, 0, 0)" : "rgb(0, 255, 0)");
+  setColor(autoClickButton, numberOfCookies < autoClickPrice ? "rgb(255, 0, 0)" : "rgb(0, 255, 0)");
+}
 
 function setUpgradeText(button, value) {
   button.innerText = "Upgrade: " + value;
