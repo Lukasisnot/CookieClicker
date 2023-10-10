@@ -1,52 +1,98 @@
 body {
-    font-family: monospace;
-    user-select: none;
+  font-family: monospace;
+  user-select: none;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../img/background.jpg");
+  background-size: cover;
+  font-size: x-large;
+  font-weight: bolder;
+  color: white;
 }
 
-#cookie {
-    max-width: 120px;
-    width: 100%;
+#mainContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* #upgradeButton {
-    color: gray;
-    background-image: url("../img/upgrade.png");
-} */
+/* =========== Cat ================================ */
+#cat-Wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-top: 50px;
+}
 
-#upgradeButton {
-    background-color: transparent;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-  }
+#cat-Img {
+  max-width: 300px;
+  width: 100%;
+  display: block;
+}
 
-#autoClickButton {
-    background-color: transparent;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-  }
+.fleshCount-Txt {
+  display: block;
+}
 
-  #upgradeButtonWrapper:hover {
-    transform: scale(1.1);
-  }
+/* =========== Click Upgrade ====================== */
+#clickUpg-Wrapper {
+  background-color: red;
+  display: block;
+}
 
-  #upgradeButtonWrapper {
-    border: solid black 5px;
-    background-color: wheat;
-    display: flex;
-  }
+#clickUpg-Btn {
+  border: solid white 5px;
+  background-image: url("../img/catTeethUpgrade.webp");
+  background-size: cover;
+  width: 300px;
+  height: 300px;
+}
+  
+#clickUpg-Img {
+  max-width: 150px;
+  width: 100%;
+}
 
-  .upgradeImg {
-    max-width: 30px;
-    width: 100%;
-    margin: 1em;
-  }
+.upg-Txt {
+  font-family: monospace;
+  color: white;
+  font-weight: bolder;
+  font-size: x-large;
+}
+
+#clickUpg-Btn:hover {
+  transform: scale(1.1);
+}
+
+
+/* =========== Autoclick Upgrade ================== */
+#upg-Wrapper {
+  display: block;
+}
+
+#autoclickUpg-Btn {
+  border: solid white 5px;
+  background-image: url("../img/autocat.webp");
+  background-size: cover;
+  width: 300px;
+  height: 300px;
+}
+  
+#autoclickUpg-Img {
+  max-width: 150px;
+  width: 100%;
+}
+
+.upg-Txt {
+  font-family: monospace;
+  color: white;
+  font-weight: bolder;
+  font-size: x-large;
+}
+
+#autoclickUpg-Btn:hover {
+  transform: scale(1.1);
+}

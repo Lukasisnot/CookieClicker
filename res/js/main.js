@@ -1,81 +1,69 @@
-const cookie = document.getElementById("cookie");
-const counter = document.getElementById("counter");
-const upgradeButton = document.getElementById("upgradeButton");
-const autoClickButton = document.getElementById("autoClickButton");
+//============================ Core ================================//
+const CatImg = document.getElementById("cat-Img");
+const FleshCountTxt = document.getElementById("fleshCountNum-Txt");
 
-let numberOfCookies = 0;
-let cookieAdder = 1;
-let clickUpgradePrice = 50;
-let autoClickPrice = 100;
-let autoClickAdder = 0;
-let autoClickerInterval = 1500;
-let autoClicker;
+let FleshCount = 0;
+let FleshAddValue = 1;
 
-cookie.onclick = () => {
-  // console.log("click");
-  // console.log(numberOfCookies);
-  addCookies(cookieAdder);
-  updateCookies();
-  updateButtons();
+//============================ Click Upgrade =======================//
+const ClickUpgBtn = document.getElementById("clickUpg-Btn");
+const ClickUpgBtnTxt = document.getElementById("clickUpg-Price");
+
+let ClickUpgPrice = 50;
+let ClickUpgPriceMultiplier = 2;
+let ClickUpgClickMultiplier = 2;
+
+//============================ Click Upgrade =======================//
+const AutoclickUpgBtn = document.getElementById("autoclickUpg-Btn");
+const AutoclickUpgBtnTxt = document.getElementById("autoclickUpg-Price");
+
+let AutoclickUpgPrice = 100;
+let AutoclickUpgPriceMultiplier = 2;
+let AutoclickUpgAddValue = 0;
+let AutoclickUpgIntervalTime = 750;
+let AutoclickInterval;
+
+//============================ Core ================================//
+setInterval(() => {
+  FleshCountTxt.innerText = parseInt(FleshCount);
+}, 100);
+
+CatImg.onmousedown = () => {
+  AddFleshCount(FleshAddValue);
+  CatImg.setAttribute("src", "./res/img/catBite.png");
+  CatImg.style.transform = "scale(.9)";
 };
 
-upgradeButton.onclick = () => {
-  if (numberOfCookies < clickUpgradePrice) return;
-
-  addCookies(-clickUpgradePrice);
-  cookieAdder *= 2;
-  updateCookies();
-  updateButtons();
-
-  clickUpgradePrice *= 2;
-  setUpgradeText(upgradeButton, clickUpgradePrice);
-};
-
-autoClickButton.onclick = () => {
-  if (numberOfCookies < autoClickPrice) return;
-
-  addCookies(-autoClickPrice);
-  autoClickPrice *= 2;
-  setUpgradeText(autoClickButton, autoClickPrice);
-  updateCookies();
-  updateButtons();
-
-  autoClickAdder++;
-  autoClickerInterval -= autoClickerInterval * 0.2;
-
-  clearInterval(autoClicker);
-  autoClicker = setInterval(() => {
-    numberOfCookies += autoClickAdder;
-    updateCookies();
-    updateButtons();
-  }, autoClickerInterval);
-};
-
-// const cheat1m = () => {
-//   numberOfCookies += 1000000;
-//   counter.innerHTML = "Cookies: " + numberOfCookies;
-// }
-
-// cheat1m();
-
-function addCookies(value) {
-  numberOfCookies += value;
+CatImg.onmouseup = () => {
+  CatImg.setAttribute("src", "./res/img/catWait.png");
+  CatImg.style.transform = "scale(1)";
 }
 
-function updateButtons() {
-  setColor(upgradeButton, numberOfCookies < clickUpgradePrice ? "rgb(255, 0, 0)" : "rgb(0, 255, 0)");
-  setColor(autoClickButton, numberOfCookies < autoClickPrice ? "rgb(255, 0, 0)" : "rgb(0, 255, 0)");
+function AddFleshCount(value) {
+  FleshCount += value;
 }
 
-function setUpgradeText(button, value) {
-  button.innerText = "Upgrade: " + value;
+//============================ Click Upgrade =======================//
+ClickUpgBtn.onmousedown = () => {
+  if (FleshCount < ClickUpgPrice) return;
+  AddFleshCount(-ClickUpgPrice);
+  ClickUpgPrice *= ClickUpgPriceMultiplier;
+  FleshAddValue *= ClickUpgClickMultiplier;
+  ClickUpgBtnTxt.innerText = ClickUpgPrice;
 }
 
-function updateCookies(value) {
-  counter.innerHTML = "Cookies: " + numberOfCookies;
-}
+//============================ Autoclick Upgrade =======================//
+AutoclickUpgBtn.onmousedown = () => {
+  if (FleshCount < AutoclickUpgPrice) return;
+  AddFleshCount(-AutoclickUpgPrice);
+  AutoclickUpgPrice *= AutoclickUpgPriceMultiplier;
+  AutoclickUpgBtnTxt.innerText = AutoclickUpgPrice;
+  AutoclickUpgAddValue = AutoclickUpgAddValue == 0 ? 1 : AutoclickUpgAddValue * 1.5;
+  if (AutoclickUpgIntervalTime > 10) AutoclickUpgIntervalTime *= .9;
+  console.log(AutoclickUpgIntervalTime);
 
-function setColor(element) {
-  element.style.backgroundColor =
-    numberOfCookies < autoClickPrice ? "rgb(255, 0, 0)" : "rgb(0, 255, 0)";
+  clearInterval(AutoclickInterval);
+  AutoclickInterval = setInterval(() => {
+    AddFleshCount(AutoclickUpgAddValue);
+  }, AutoclickUpgIntervalTime);
 }

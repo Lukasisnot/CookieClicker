@@ -7,14 +7,36 @@
     <link rel="stylesheet" href="./res/css/style.css">
 </head>
 <body>
-    <img id="cookie" src="./res/img/cookie.jpg" alt="Cookie">
-    <p id="counter">Cookies: 0</p>
 
+    <div id="mainContainer">
+
+        <div id="cat-Wrapper">
+            <img id="cat-Img" src="./res/img/catWait.png" alt="Cookie">
+            <div class="fleshCount-Txt">Flesh: </div>
+            <span class="fleshCount-Txt" id="fleshCountNum-Txt">0</span>
+        </div> 
+
+        <div id="upg-Wrapper">
+            <button id="clickUpg-Btn">
+                <br> 
+                <span class="upg-Txt">Bite Upgrade</span> <br>
+                <span class="upg-Txt" id="clickUpg-Price">50</span>
+            </button>
+
+            <button id="autoclickUpg-Btn">
+                <br> 
+                <span class="upg-Txt">Auto Cat</span> <br>
+                <span class="upg-Txt" id="autoclickUpg-Price">100</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- 
     <div id="upgradeButtonWrapper">
         <img class="upgradeImg" src="./res/img/cursor.png" alt="cursor">
         <button id="upgradeButton">Upgrade: 50</button>
     </div>
-    <button id="autoClickButton">Upgrade: 100</button>
+    <button id="autoClickButton">Upgrade: 100</button> -->
 
     <script src="./res/js/main.js"></script>
 </body>
